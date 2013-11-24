@@ -2,8 +2,6 @@ var HypeView = require('./hype-view');
 
 module.exports = Backbone.View.extend({
 
-    el: '#hypes',
-
     initialize: function(){
         //listen the add event
         this.listenTo(this.collection, 'add', this.addOne);
@@ -36,7 +34,7 @@ module.exports = Backbone.View.extend({
                 client_id: '947a6dad7e6f47c6d00493d77610b5a3',
             },
             error: function(jqXHR, textStatus) {
-                console.error(textStatus, jqXHR);
+                if(jqXHR.status != 404) console.error(textStatus, jqXHR);
             },
             success: function(json){
                 if(json[0] && json[0].permalink_url) {

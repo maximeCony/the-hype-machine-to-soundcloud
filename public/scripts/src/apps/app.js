@@ -1,7 +1,10 @@
 $(function(){
 
     var HypesView = require('../views/hypes/hypes-view')
-	, Hypes = require('../collections/hype-collection');
+    , HypeView = require('../views/hypes/hype-view')
+    , HypeDetailsView = require('../views/hypes/hype-details-view')
+	, Hypes = require('../collections/hype-collection')
+    , appContainer = $('#app');
 
 	/* 
     * Router
@@ -10,6 +13,12 @@ $(function(){
 
         routes: { 
             "": "index",
+            "hypes/:id": "showDetails",
+        },
+
+        initialize: function(){
+            this.hypes = new Hypes();
+            this.hypes.fetch();
         },
 
         start: function(){
@@ -18,12 +27,24 @@ $(function(){
         },
 
         index: function(){
-            var hypes = new Hypes()
-			, hypesView = new HypesView({
-                collection: hypes,
+            var hypesView = new HypesView({
+                collection: this.hypes,
             });
-            
-            hypes.fetch();
+            appContainer.html(hypesView.render().el);
+        },
+
+        showDetails: function(id){
+            var hype = this.hypes.get(id);
+
+            var hypeView = new HypeView({
+                model: hype,
+            });
+
+            var hypeDetailsView = new HypeDetailsView({
+                model: hype,
+            });
+
+            appContainer.html('').append(hypeView.render().el, hypeDetailsView.render().el)
         },
 
     });

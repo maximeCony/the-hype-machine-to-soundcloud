@@ -5,6 +5,7 @@ module.exports = Backbone.Model.extend({
         status: 'searching',
         soundcloud_like: null,
     },
+    idAttribute : 'mediaid',
     urlRoot: function(){ 
         return 'http://hypem.com/playlist/loved/' + HYPE_USERNAME + '/json/1/data.js';
     },
