@@ -7,6 +7,7 @@ var express = require('express')
 , dust = require('dustjs-linkedin')
 , cons = require('consolidate')
 , dust = require('dustjs-helpers')
+, browserify = require('browserify-middleware')
 , publicFolder = "/public";
 
 app.configure(function(){
@@ -21,9 +22,12 @@ app.configure(function(){
     app.set('views', __dirname + '/server/views');
 	
 	app.use(express['static'](__dirname + publicFolder));
+
+	//provide browserified versions of all the files in a directory
+	app.use('/scripts/build/apps', browserify('./public/scripts/src/apps'));
 });
 
-//initialize router
+//initialize r
 app = require('./server/router')(app);
 
 require('http').createServer(app).listen(app.get('port'), function() {

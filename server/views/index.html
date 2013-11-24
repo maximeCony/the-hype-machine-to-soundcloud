@@ -1,16 +1,24 @@
 {>"layout-main.html"/}
 
 {<scripts}<!-- Scripts -->
-<!-- <script src="/scripts/vendors/underscore/underscore.js"></script>
+	<script src="/scripts/vendors/underscore/underscore.js"></script>
     <script src="/scripts/vendors/backbone/backbone.js"></script>
-    <script src="/scripts/app/app.js"></script> -->
+    <script type="text/javascript">
+    	var HYPE_USERNAME = 'maximeCony';
+    </script>
+    <script src="/scripts/build/apps/app.js"></script>
 {/scripts}
 
 
 {<content}<!-- Page content -->
 
-	<section id="app"></section>
+	<section id="app">
+		<section id="hypes"></section>
+	</section>
 
-    <h1>Hello World!</h1>
+    <!-- User table template-->
+    <script type="text/template" id="hype-item-template">
+        {>"hypes/hype-item.html"/}
+    </script>
 
 {/content}
