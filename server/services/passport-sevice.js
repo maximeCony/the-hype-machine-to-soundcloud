@@ -26,8 +26,11 @@ module.exports = function(passport){
     },
     function(accessToken, refreshToken, profile, callback) {
 
+        console.log(accessToken, refreshToken)
+
         var user = {
             soundcloud_id: profile._json.id,
+            soundcloud_oauth_token: accessToken,
             username: profile._json.username,
             avatar_url: profile._json.avatar_url,
         }

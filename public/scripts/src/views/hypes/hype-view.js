@@ -31,10 +31,10 @@ module.exports = Backbone.View.extend({
             if(!model.attributes.soundcloud_id || model.attributes.soundcloud_like !== null) return;
 
             $.ajax({
-                url: 'http://api.soundcloud.com/users/' + SOUNDCLOUD_USER_ID + '/favorites/' + model.attributes.soundcloud_id + '.json',
+                url: 'https://api.soundcloud.com/me/favorites/' + model.attributes.soundcloud_id + '.json',
                 type: "GET",
                 data: {
-                    client_id: '947a6dad7e6f47c6d00493d77610b5a3',
+                    oauth_token: SOUNDCLOUD_OAUTH_TOKEN,
                 },
                 error: function(jqXHR, textStatus) {
                     if(jqXHR.status == 404) return model.set({soundcloud_like: false});
@@ -48,29 +48,36 @@ module.exports = Backbone.View.extend({
 
         likeTrack: function(){
 
+            this.model.set({soundcloud_like: true});
+            var me = this;
             $.ajax({
-                url: 'http://api.soundcloud.com/users/' + SOUNDCLOUD_USER_ID + '/favorites/' + this.model.attributes.soundcloud_id + '.json?client_id=947a6dad7e6f47c6d00493d77610b5a3',
+                url: 'https://api.soundcloud.com/me/favorites/' + this.model.attributes.soundcloud_id + '.json',
                 type: "PUT",
+                data: {
+                    oauth_token: SOUNDCLOUD_OAUTH_TOKEN,
+                },
+                contentType: "application/json",
                 error: function(jqXHR, textStatus) {
                     console.error(textStatus, jqXHR);
+                    me.model.set({soundcloud_like: false});
                 },
-                success: function(json){
-                    this.model.set({soundcloud_like: true});
-                }
             });
         },
 
         unlikeTrack: function(){
 
+            this.model.set({soundcloud_like: false});
+            var me = this;
             $.ajax({
-                url: 'http://api.soundcloud.com/users/' + SOUNDCLOUD_USER_ID + '/favorites/' + this.model.attributes.soundcloud_id + '.json?client_id=947a6dad7e6f47c6d00493d77610b5a3',
+                url: 'https://api.soundcloud.com/me/favorites/' + this.model.attributes.soundcloud_id + '.json',
                 type: "DELETE",
+                data: {
+                    oauth_token: SOUNDCLOUD_OAUTH_TOKEN,
+                },
                 error: function(jqXHR, textStatus) {
                     console.error(textStatus, jqXHR);
+                    me.model.set({soundcloud_like: true});
                 },
-                success: function(json){
-                    this.model.set({soundcloud_like: false});
-                }
             });
         },
 
