@@ -22,7 +22,7 @@ $(function(){
 			, hypesView = new HypesView({
                 collection: hypes,
             });
-            console.log(hypes)
+            
             hypes.fetch();
         },
 

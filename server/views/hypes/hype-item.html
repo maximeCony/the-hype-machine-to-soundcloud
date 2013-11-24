@@ -1,5 +1,23 @@
-<h3>
-	<img class="hype-thumb" src="<%= thumb_url_medium %>" alt="thumb">
-	<%= title %>
-</h3>
-<h6><%= artist %></h6>
+<% if (soundcloud_permalink_url) { %>
+	<a href="<%= soundcloud_permalink_url %>" target="_blank">
+		<h3 class="title">
+			<%= title %>
+		</h3>
+	</a>
+<% } else { %>
+	<h3 class="title"><%= title %></h3>
+<% } %>
+
+<h5><%= artist %></h5>
+
+<% if (soundcloud_like === true) { %>
+	<button class="btn unlike-track">
+		Liked <span class="glyphicon glyphicon-heart"></span> 
+	</button>
+<% } %>
+
+<% if (soundcloud_like === false) { %>
+	<button class="btn like-track">
+		Not liked <span class="glyphicon glyphicon-heart-empty"></span> 
+	</button>
+<% } %>

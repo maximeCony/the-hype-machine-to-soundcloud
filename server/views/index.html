@@ -1,10 +1,45 @@
 {>"layout-main.html"/}
 
+{<styles}<!-- Styles -->
+    <style type="text/css">
+        body{
+            font-family: 'Roboto Condensed', sans-serif !important;
+        }
+        .hype-thumb{
+            height: 40px;    
+        }
+        .hype{
+            padding: 10px;
+            margin: 30px;
+            height: 320px;
+            width: 320px;
+            background-repeat: no-repeat !important;
+            color: white;
+            text-shadow: 2px 2px black;
+            box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+        .hype a{
+            color: white;
+        }
+        .title{
+            display: inline;
+        }
+        .unlike-track, .like-track {
+            bottom: 10px;
+            position: absolute;
+            right: 10px;
+            box-shadow: 2px 2px black;
+        }
+    </style>
+{/styles}
+
 {<scripts}<!-- Scripts -->
 	<script src="/scripts/vendors/underscore/underscore.js"></script>
     <script src="/scripts/vendors/backbone/backbone.js"></script>
     <script type="text/javascript">
-    	var HYPE_USERNAME = 'maximeCony';
+        var HYPE_USERNAME = 'maximeCony';
+    	var SOUNDCLOUD_USER_ID = '{user.soundcloud_id}';
     </script>
     <script src="/scripts/build/apps/app.js"></script>
 {/scripts}
@@ -13,7 +48,7 @@
 {<content}<!-- Page content -->
 
 	<section id="app">
-		<section id="hypes"></section>
+		<section id="hypes" class="row"></section>
 	</section>
 
     <!-- User table template-->

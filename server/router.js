@@ -5,6 +5,7 @@ var errorService = require('./services/error-service');
 
 module.exports = function(app){
 
+	require('./routes/login-routes')(app);
 	require('./routes/default-routes')(app);
     
     // custom 404 and 403 and 410...

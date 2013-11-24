@@ -7,8 +7,10 @@ var express = require('express')
 , dust = require('dustjs-linkedin')
 , cons = require('consolidate')
 , dust = require('dustjs-helpers')
+, passport = require('passport')
 , browserify = require('browserify-middleware')
-, publicFolder = "/public";
+, publicFolder = "/public"
+, SESSION_SECRET = env.require('SESSION_SECRET');
 
 app.configure(function(){
 
@@ -20,12 +22,23 @@ app.configure(function(){
     // set .html as the default extension 
     app.set('view engine', 'html');
     app.set('views', __dirname + '/server/views');
+
+    app.use(express.cookieParser());
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+    app.use(express.session({ secret: SESSION_SECRET }));
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.use(app.router);
 	
 	app.use(express['static'](__dirname + publicFolder));
 
 	//provide browserified versions of all the files in a directory
 	app.use('/scripts/build/apps', browserify('./public/scripts/src/apps'));
 });
+
+// passport config
+passport = require('./server/services/passport-sevice')(passport);
 
 //initialize r
 app = require('./server/router')(app);
