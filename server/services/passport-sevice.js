@@ -3,11 +3,18 @@
 
 var SoundCloudStrategy = require('passport-soundcloud').Strategy
 , env = require('require-env')
-, redis = require('redis')
-, client = redis.createClient()
 , SERVER_URL = env.require('SERVER_URL')
 , SOUNDCLOUD_CLIENT_ID = env.require('SOUNDCLOUD_CLIENT_ID')
 , SOUNDCLOUD_CLIENT_SECRET = env.require('SOUNDCLOUD_CLIENT_SECRET');
+
+if (process.env.REDISTOGO_URL) {
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL)
+    , redis = require("redis").createClient(rtg.port, rtg.hostname);
+
+    redis.auth(rtg.auth.split(":")[1]);
+} else {
+    var redis = require("redis").createClient();
+}
 
 module.exports = function(passport){
 
@@ -24,7 +31,7 @@ module.exports = function(passport){
             username: profile._json.username,
             avatar_url: profile._json.avatar_url,
         }
-        client.set(profile._json.id, JSON.stringify(user));
+        redis.set(profile._json.id, JSON.stringify(user));
         callback(null, user);
     }
     ));
@@ -35,7 +42,7 @@ module.exports = function(passport){
 
     passport.deserializeUser(function(id, callback) {
         
-        client.get(id, function(err, str){
+        redis.get(id, function(err, str){
             callback(null, JSON.parse(str));
         });
     });
