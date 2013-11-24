@@ -13,7 +13,6 @@ module.exports = Backbone.View.extend({
         events: {
             'click .like-track': 'likeTrack',
             'click .unlike-track': 'unlikeTrack',
-            'click': 'hypeDetails',
         },
 
         render: function() {
@@ -25,11 +24,6 @@ module.exports = Backbone.View.extend({
                 this.$el.css('background', 'url(' + this.model.attributes.thumb_url_large + ')');
             }
             return this;
-        },
-
-        hypeDetails: function(){
-
-            window.location = '#hypes/' + this.model.attributes.mediaid;
         },
 
         getSoundCloudLikes: function(model){

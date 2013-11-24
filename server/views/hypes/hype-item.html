@@ -10,19 +10,21 @@
 
 <h5><%= artist %></h5>
 
+<a href="#/hypes/<%= mediaid %>" class="play-link"></a>
+
 <section class="hypes-controls">
 	<button class="btn follow">
 			Follow
 	</button>
 	<% if (soundcloud_like === true) { %>
 		<button class="btn unlike-track">
-			Liked <span class="glyphicon glyphicon-heart"></span> 
+			<span class="glyphicon glyphicon-heart"></span> 
 		</button>
 	<% } %>
 
 	<% if (soundcloud_like === false) { %>
 		<button class="btn like-track">
-			Not liked <span class="glyphicon glyphicon-heart-empty"></span> 
+			<span class="glyphicon glyphicon-heart-empty"></span> 
 		</button>
 	<% } %>
 </section>
