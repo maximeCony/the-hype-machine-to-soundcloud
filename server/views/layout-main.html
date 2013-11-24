@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    {#title}
+        <title>{title}</title>
+    {:else}
+        <title>The Hype Machine to Soundcloud</title>
+    {/title}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {+meta/}
+
+    <!-- Bootstrap core CSS -->
+    <link href="/scripts/vendors/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    {+styles/}
+
+</head>
+
+
+<body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">The Hype Machine to Soundcloud</a>
+            </div>
+            <!-- <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li id="admin-users-nav">
+                        <a href="#users">Users</a>
+                    </li>
+                    <li id="admin-deleted-users-nav">
+                        <a href="#deleted-users">Deleted Users</a>
+                    </li>
+                    <li id="admin-invitations-nav">
+                        <a href="#invitations">Invitations</a>
+                    </li>
+                </ul>
+            </div> --><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container">
+        {+content/}
+    </div> <!-- /container -->
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/scripts/vendors/jquery/jquery-2.0.3.js"></script>
+    <script src="/scripts/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="/scripts/lib/jauntful-alert.js"></script>-->
+    <script type="text/javascript">
+        var JAUNTFUL_URL = "{JAUNTFUL_URL}";
+    </script>
+    {+scripts/}
+</body>
+</html>

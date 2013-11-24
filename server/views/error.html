@@ -1,0 +1,19 @@
+{>"layout-main.html"/}
+
+{<title}Not Found{/title}
+
+{<content}
+    <div class="container" id="four0four">
+        <section class="row">
+                <aside>
+                    <button class="btn btn-warning" onclick="javascript:history.back()">&larr; Go Back</button>
+                </aside>
+                <div class="four0four-message">
+                    <h1>{#error}{message}{:else}WAT.{/error}<br />
+                    {#error.status}
+                        It's a {error.status}.</h1>
+                    {/error.status}
+                </div>
+        </section>
+    </div>
+{/content}
