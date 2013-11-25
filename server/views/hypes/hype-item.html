@@ -8,14 +8,20 @@
 	<h3 class="title"><%= title %></h3>
 <% } %>
 
-<h5><%= artist %></h5>
+<h5>
+	<% if (soundcloud_like === false) { %>
+		<a href="<%= soundcloud_user_permalink_url %>" target="_blank"><%= artist %></a>
+	<% } else { %>
+		<%= artist %>
+	<% } %>
+</h5>
 
-<a href="#/hypes/<%= mediaid %>" class="play-link"></a>
+<% if (soundcloud_id) { %>
+	<a href="#/hypes/<%= mediaid %>" class="play-link"></a>
+<% } %>
 
 <section class="hypes-controls">
-	<button class="btn follow">
-			Follow
-	</button>
+
 	<% if (soundcloud_like === true) { %>
 		<button class="btn unlike-track">
 			<span class="glyphicon glyphicon-heart"></span> 
@@ -26,5 +32,17 @@
 		<button class="btn like-track">
 			<span class="glyphicon glyphicon-heart-empty"></span> 
 		</button>
+	<% } %>
+
+	<% if (soundcloud_follow === true) { %>
+		<button class="btn unfollow">
+			Following
+	</button>
+	<% } %>
+
+	<% if (soundcloud_follow === false) { %>
+		<button class="btn follow">
+			Follow
+	</button>
 	<% } %>
 </section>

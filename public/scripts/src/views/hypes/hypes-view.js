@@ -38,9 +38,11 @@ module.exports = Backbone.View.extend({
             },
             success: function(json){
                 if(json[0] && json[0].permalink_url) {
+                    console.log(json[0])
                     model.set({
                         'soundcloud_id': json[0].id,
                         'soundcloud_permalink_url': json[0].permalink_url,
+                        'soundcloud_user_permalink_url': json[0].user.permalink_url,
                     });
                 }
             }
