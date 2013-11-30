@@ -8,7 +8,7 @@ var loginMiddleware = require('../middlewares/login-middleware')
 module.exports = function(app) {
 
 	app.get('/', loginMiddleware.ensureAuthenticated, function(req, res, next){
-		res.render('index', {
+		res.render('app', {
 			user: req.user,
 			SOUNDCLOUD_CLIENT_ID: SOUNDCLOUD_CLIENT_ID,
 		});

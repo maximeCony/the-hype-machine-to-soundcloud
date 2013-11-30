@@ -30,11 +30,11 @@ app.configure(function(){
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(app.router);
-	
-	app.use(express['static'](__dirname + publicFolder));
 
-	//provide browserified versions of all the files in a directory
-	app.use('/scripts/build/apps', browserify('./public/scripts/src/apps'));
+    app.use(express['static'](__dirname + publicFolder));
+
+    //provide browserified versions of all the files in a directory
+    app.use('/scripts/build/apps', browserify('./public/scripts/src/apps'));
 });
 
 // passport config
